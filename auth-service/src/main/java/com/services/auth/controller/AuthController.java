@@ -1,7 +1,5 @@
 package com.services.auth.controller;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +59,7 @@ public class AuthController {
 	    String isRefresh = request.getHeader("isRefresh");
 	    if(isRefresh!=null && isRefresh.equals("1")) {
 	    	String auth=request.getHeader("Authorization");
-	    	if(auth.startsWith("Bearer")) {
+	    	if(auth!=null && auth.startsWith("Bearer")) {
 	    		String expToken=auth.substring(auth.indexOf(" ")+1);
 	    		if(expToken!=null) {
 	    				String token=authService.refreshToken(expToken);
