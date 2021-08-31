@@ -26,7 +26,7 @@ public class RouteConfiguration {
 	    );
 
     public Predicate isSecured =
-	            request -> openApiEndpoints.stream().noneMatch((uri)-> ((HttpRequest) request).getURI().getPath().contains(uri));
+	            request -> openApiEndpoints.stream().noneMatch((uri)-> ((HttpRequest) request).getURI().getPath().equals(uri));
 	
 	
 	@Bean
@@ -34,7 +34,7 @@ public class RouteConfiguration {
 		return routeLocatorBuilder.routes()
 				.route("product-service", r -> r.path("/api/product/*").filters(f -> f.filter(jwTokenFiler)).uri("lb://product-service"))
 				.route("inventory-service",r-> r.path("/api/inventory/*").filters(f-> f.filter(jwTokenFiler)).uri("lb://inventory-service"))
-				.route("auth-service",r-> r.path("/auth/*").uri("lb://auth-service"))
+				.route("auth-service",r-> r.path("/auth/*").filters(f-> f.filter(jwTokenFiler)).uri("lb://auth-service"))
 				.build();
 	}
 	
