@@ -13,6 +13,7 @@ public class DiscoveryServerApplication {
 	Logger logger=LogManager.getLogger(DiscoveryServerApplication.class);
 	
 	public static void main(String[] args) {
+		
 		SpringApplication.run(DiscoveryServerApplication.class, args);
 	}
 

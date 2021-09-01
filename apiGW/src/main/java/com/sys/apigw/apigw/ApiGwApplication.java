@@ -1,4 +1,4 @@
-package com.sys.apigw.apiGW;
+package com.sys.apigw.apigw;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.sys.apigw.apiGW.configs;
+package com.sys.apigw.apigw.configs;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.sys.apigw.apiGW.security;
+package com.sys.apigw.apigw.security;
 
 import java.nio.charset.StandardCharsets;
 
@@ -14,8 +14,8 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.server.ServerWebExchange;
 
-import com.sys.apigw.apiGW.configs.JWTUtils;
-import com.sys.apigw.apiGW.configs.RouteConfiguration;
+import com.sys.apigw.apigw.configs.JWTUtils;
+import com.sys.apigw.apigw.configs.RouteConfiguration;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import reactor.core.publisher.Flux;

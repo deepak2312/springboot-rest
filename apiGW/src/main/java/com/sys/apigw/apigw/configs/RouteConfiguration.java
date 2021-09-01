@@ -1,5 +1,6 @@
-package com.sys.apigw.apiGW.configs;
+package com.sys.apigw.apigw.configs;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
-import com.sys.apigw.apiGW.security.JWTokenFiler;
+import com.sys.apigw.apigw.security.JWTokenFiler;
 
 @Configuration
 public class RouteConfiguration {
@@ -19,11 +20,11 @@ public class RouteConfiguration {
 	@Autowired
 	JWTokenFiler jwTokenFiler;
    
-	public static final List<String> openApiEndpoints= List.of(
+	public static final List<String> openApiEndpoints= Arrays.asList(
 	            "/auth/register",
 	            "/auth/login",
 	            "/auth/refreshToken"
-	    );
+	);
 
     public Predicate isSecured =
 	            request -> openApiEndpoints.stream().noneMatch((uri)-> ((HttpRequest) request).getURI().getPath().equals(uri));

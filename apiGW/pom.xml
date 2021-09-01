@@ -9,27 +9,17 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sys.apigw</groupId>
-	<artifactId>apiGW</artifactId>
+	<artifactId>apigw</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>apiGW</name>
+	<packaging>jar</packaging>
 	<description>API GW</description>
 	<properties>
 		<java.version>8</java.version>
 		<spring-cloud.version>2020.0.3</spring-cloud.version>
+		<project.build.finalName>apiGW</project.build.finalName>
 	</properties>
 	<dependencies>
-		
-		<dependency>
-			  <groupId>org.springframework.boot</groupId>
-			  <artifactId>spring-boot-starter</artifactId>
-			  <exclusions>
-			    <exclusion>
-			      <groupId>org.springframework.boot</groupId>
-			      <artifactId>spring-boot-starter-logging</artifactId>
-			    </exclusion>
-			  </exclusions>
-		</dependency>
-	
 	
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -38,11 +28,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
@@ -80,10 +65,56 @@
 	<build>
 		<plugins>
 			<plugin>
+			<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.sys.apigw.apigw.ApiGwApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
 			</plugin>
+			
+			<plugin>
+			  <groupId>com.spotify</groupId>
+			  <artifactId>dockerfile-maven-plugin</artifactId>
+			  <version>1.4.13</version>
+			  <executions>
+			    <execution>
+			      <id>default</id>
+			      <goals>
+			        <goal>build</goal>
+			        <goal>push</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			  <configuration>
+			    <repository>${project.artifactId}</repository>
+			    <tag>${project.version}</tag>
+			    <buildArgs>
+			      <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+			    </buildArgs>
+			  </configuration>
+			</plugin>
+			
+			
+			
 		</plugins>
 	</build>
+
+
 
 </project>
