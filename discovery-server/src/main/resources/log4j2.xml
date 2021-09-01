@@ -7,8 +7,8 @@
         </Console>
 
         <RollingFile name="RollingFile"
-            fileName="/home/deepak/logs/auth-service.log"
-            filePattern="/home/deepak/logs/auth-service%d{-dd-MMMM-yyyy}-%i.log.gz">
+            fileName="/home/deepak/logs/discovery-server.log"
+            filePattern="/home/deepak/logs/discovery-server%d{-dd-MMMM-yyyy}-%i.log.gz">
             <PatternLayout>
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>
             </PatternLayout>
